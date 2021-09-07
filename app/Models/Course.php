@@ -23,4 +23,9 @@ class Course extends Model
     protected $casts = [
         ConstantsCourse::FILES => 'array'
     ];
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
 }

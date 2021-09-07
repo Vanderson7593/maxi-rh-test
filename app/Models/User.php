@@ -12,29 +12,36 @@ class User extends Model
 
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
-    protected $fillable = [
-        UserConstants::NAME,
-        UserConstants::EMAIL,
-        UserConstants::PASSWORD,
-        UserConstants::CATEGORY,
-        UserConstants::UF,
-        UserConstants::CPF,
-        UserConstants::ADDRESS,
-        UserConstants::COMPANY,
-        UserConstants::PHONE,
-        UserConstants::TELEPHONE,
-        UserConstants::ROLE,
-        ModelConstants::IS_DELETED,
-    ];
+    // /**
+    //  * The attributes that are mass assignable.
+    //  *
+    //  * @var string[]
+    //  */
+    // protected $fillable = [
+    //     UserConstants::NAME,
+    //     UserConstants::EMAIL,
+    //     UserConstants::PASSWORD,
+    //     UserConstants::CATEGORY,
+    //     UserConstants::UF,
+    //     UserConstants::CPF,
+    //     UserConstants::ADDRESS,
+    //     UserConstants::COMPANY,
+    //     UserConstants::PHONE,
+    //     UserConstants::TELEPHONE,
+    //     UserConstants::ROLE,
+    //     ModelConstants::IS_DELETED,
+    // ];
+
+    public function subscriptions()
+    {
+        return $this->belongsToMany(Subscription::class);
+    }
+
+    protected $guarded = [ModelConstants::ID];
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class);
+        return $this->hasMany(Course::class);
     }
 
     protected $attributes = [
