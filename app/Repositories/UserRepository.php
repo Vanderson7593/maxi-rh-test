@@ -59,6 +59,7 @@ class UserRepository implements UserRepositoryInterface
   /**
    * Restore User
    * @param object $userModel
+   * @param int $id
    */
   public function restoreUser(object $userModel, int $id)
   {

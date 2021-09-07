@@ -33,7 +33,7 @@ class UserService
   }
 
   /**
-   * Create a ner User
+   * Create a new User
    * @param array $User
    * @return object $User
    */
