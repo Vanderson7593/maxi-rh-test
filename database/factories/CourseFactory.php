@@ -26,9 +26,9 @@ class CourseFactory extends Factory
             'name' => $this->faker->name(),
             'description' => 'description',
             'value' => $this->faker->numberBetween(1000, 9000),
-            'sub_start_date' => $this->date(),
-            'sub_end_date' => $this->date(),
-            'max_sub' => $this->randomDigit()
+            'sub_start_date' => $this->faker->date(),
+            'sub_end_date' => $this->faker->date(),
+            'max_sub' => $this->faker->randomDigit()
         ];
     }
 }
