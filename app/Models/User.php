@@ -32,17 +32,7 @@ class User extends Model
     //     ModelConstants::IS_DELETED,
     // ];
 
-    public function subscriptions()
-    {
-        return $this->belongsToMany(Subscription::class);
-    }
-
     protected $guarded = [ModelConstants::ID];
-
-    public function courses()
-    {
-        return $this->hasMany(Course::class);
-    }
 
     protected $attributes = [
         ModelConstants::IS_DELETED => false,
