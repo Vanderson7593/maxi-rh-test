@@ -34,6 +34,16 @@ class CourseRepository implements CourseRepositoryInterface
     return $this->entity->where('id', $id)->first();
   }
 
+  public function verifyCoursesIds(array $ids)
+  {
+    return $this->entity->where('id', $ids)->exists();
+  }
+
+  public function sumCoursesIds(array $ids)
+  {
+    return $this->entity->whereIn('id', $ids)->sum('value');
+  }
+
   /**
    * Create new Course
    * @param array $course

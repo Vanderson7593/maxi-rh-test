@@ -2,10 +2,16 @@
 
 namespace App\Services;
 
+use App\Constants\ResponseMessages;
+use App\Constants\ResponseStatusCode;
 use App\Repositories\Contracts\CourseRepositoryInterface;
+use App\Traits\ApiResponser;
+use App\Validation\CourseValidation;
 
 class CourseService
 {
+  use ApiResponser;
+
   protected $courseRepository;
 
   public function __construct(CourseRepositoryInterface $courseRepository)
@@ -39,6 +45,12 @@ class CourseService
    */
   public function makeCourse(array $course)
   {
+    $validator = CourseValidation::validateCourse();
+
+    if ($validator->fails()) {
+      return $this->errorResponse($validator->errors(), ResponseStatusCode::UNPROCESSABLE_ENTITY);
+    }
+
     return $this->courseRepository->createCourse($course);
   }
 }

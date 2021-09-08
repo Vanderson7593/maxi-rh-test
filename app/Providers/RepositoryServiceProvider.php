@@ -5,11 +5,13 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\{
     UserRepositoryInterface,
-    CourseRepositoryInterface
+    CourseRepositoryInterface,
+    SubscriptionRepositoryInterface
 };
 use App\Repositories\{
     UserRepository,
-    CourseRepository
+    CourseRepository,
+    SubscriptionRepository
 };
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -29,6 +31,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             CourseRepositoryInterface::class,
             CourseRepository::class,
+        );
+
+        $this->app->bind(
+            SubscriptionRepositoryInterface::class,
+            SubscriptionRepository::class,
         );
     }
 

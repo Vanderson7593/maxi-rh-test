@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Constants\Model as ModelConstants;
+use App\Constants\Subscription as ConstantsSubscription;
 use App\Models\User as User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,12 @@ class Subscription extends Model
 
     use HasFactory;
 
-    protected $guarded = [ModelConstants::ID];
+    protected $guarded = [];
+
+
+    // protected $casts = [
+    //     ConstantsSubscription::COURSES => 'array'
+    // ];
 
     public function user()
     {

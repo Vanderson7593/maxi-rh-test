@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Constants\StatusCodes;
+use App\Constants\ResponseStatusCode;
 use App\Constants\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Traits\ApiResponser;
@@ -49,13 +49,13 @@ class UserService
     $validator = null;
 
     if ($user[User::ROLE] === User::ROLES[2]) {
-      $validator = UserValidation::validateStudant();
+      $validator = UserValidation::validateStudent();
     } else {
       $validator = UserValidation::validateUser();
     }
 
     if ($validator->fails()) {
-      return $this->errorResponse($validator->errors(), StatusCodes::UNPROCESSABLE_ENTITY);
+      return $this->errorResponse($validator->errors(), ResponseStatusCode::UNPROCESSABLE_ENTITY);
     }
 
     return $this->userRepository->createUser($user);
