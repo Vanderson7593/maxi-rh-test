@@ -8,8 +8,10 @@ final class ResponseMessages
   public const UPDATED = 'Item updated';
   public const DELETED = 'Item deleted';
 
-  public const COURSE_NOT_FOUND = 'Invalid courses';
-  public const USER_NOT_FOUND = 'Invalid user';
+  public const COURSE_NOT_FOUND = 'Course not found';
+  public const USER_NOT_FOUND = 'User not found';
+  public const SUBSCRIPTION_NOT_FOUND = 'Subscription not found';
+
   public const SUBSCRIPION_CREATED = 'Subscription created';
   public const SUBSCRIPION_UPDATED = 'Subscription updated';
 }

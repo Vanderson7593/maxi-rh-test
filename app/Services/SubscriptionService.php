@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Constants\ResponseMessages;
 use App\Constants\ResponseStatusCode;
+use App\Constants\Subscription;
 use App\Helpers\Helpers;
 use App\Repositories\Contracts\SubscriptionRepositoryInterface;
 use App\Repositories\CourseRepository;
@@ -39,6 +40,12 @@ class SubscriptionService
     return $this->subscriptionRepository->getSubscriptionById($id);
   }
 
+  public function calculateTotal(array $coursesIds)
+  {
+    $total = $this->courseRepository->sumCoursesIds($coursesIds);
+    return $total;
+  }
+
   public function makeSubscription(array $subscription)
   {
 
@@ -65,12 +72,12 @@ class SubscriptionService
 
     $filteredFields = Arr::except($subscriptionValidator->validated(), ['courses']);
 
-    $subscriptionTotal = $this->courseRepository->sumCoursesIds($coursesIds);
+    $tempSub = [
+      Subscription::USER_ID => $user->id,
+      Subscription::TOTAL => $this->calculateTotal($coursesIds)
+    ];
 
-    $subFieldsWithUser = Arr::add($filteredFields, 'user_id', $user->id);
-    $subFieldsWithTotal = Arr::add($subFieldsWithUser, 'total', $subscriptionTotal);
-
-    $sub = $this->subscriptionRepository->createSubscription($subFieldsWithTotal);
+    $sub = $this->subscriptionRepository->createSubscription(array_merge($filteredFields, $tempSub));
     $sub->courses()->sync($coursesIds);
 
     return $this->successResponse($sub, ResponseMessages::SUBSCRIPION_CREATED, ResponseStatusCode::SUCCESS);
@@ -82,7 +89,7 @@ class SubscriptionService
     $user = $this->userRepository->getUserById($subscription['user_id']);
 
     if (!$sub) {
-      return $this->errorResponse(ResponseMessages::NOT_FOUND, ResponseStatusCode::NOT_FOUND);
+      return $this->errorResponse(ResponseMessages::SUBSCRIPTION_NOT_FOUND, ResponseStatusCode::NOT_FOUND);
     }
 
     if (!$user) {
@@ -111,12 +118,12 @@ class SubscriptionService
 
     $filteredFields = Arr::except($subscriptionValidator->validated(), ['courses']);
 
-    $subscriptionTotal = $this->courseRepository->sumCoursesIds($coursesIds);
+    $tempSub = [
+      Subscription::USER_ID => $user->id,
+      Subscription::TOTAL => $this->calculateTotal($coursesIds)
+    ];
 
-    $subFieldsWithUser = Arr::add($filteredFields, 'user_id', $user->id);
-    $subFieldsWithTotal = Arr::add($subFieldsWithUser, 'total', $subscriptionTotal);
-
-    $this->subscriptionRepository->updateSubscription($sub, $subFieldsWithTotal);
+    $this->subscriptionRepository->updateSubscription($sub, array_merge($filteredFields, $tempSub));
     $sub->courses()->sync($coursesIds);
 
     return $this->successResponse($sub, ResponseMessages::SUBSCRIPION_UPDATED, ResponseStatusCode::SUCCESS);
