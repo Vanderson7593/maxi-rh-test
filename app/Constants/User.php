@@ -17,7 +17,6 @@ final class User
     public const TELEPHONE = 'telephone';
     public const ROLE = 'role';
     public const PASSWORD = 'password';
-    public const COURSE_ID = 'course_id';
 
     public const ROLES = ['admin', 'operator', 'student'];
 
