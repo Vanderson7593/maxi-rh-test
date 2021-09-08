@@ -19,7 +19,6 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string(Course::NAME);
             $table->string(Course::DESCRIPTION);
-            $table->string(Course::STATUS);
             $table->integer(Course::VALUE)->default(0);
             $table->integer(Course::MAX_SUB);
             $table->date(Course::SUB_START_DATE);

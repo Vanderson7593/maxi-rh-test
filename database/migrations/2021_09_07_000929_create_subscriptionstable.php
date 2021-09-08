@@ -29,11 +29,8 @@ class CreateSubscriptionsTable extends Migration
                 ->onUpdate(CASCADE)
                 ->onDelete(CASCADE);
 
-            $table->foreignId(Subscription::COURSE_ID)
-                ->constrained()
-                ->onUpdate(CASCADE)
-                ->onDelete(CASCADE);
-
+            $table->integer(Subscription::TOTAL)->default(0);
+            $table->string(Subscription::STATUS)->default();
             $table->timestamps();
         });
     }
