@@ -116,14 +116,10 @@ class SubscriptionService
     $subFieldsWithUser = Arr::add($filteredFields, 'user_id', $user->id);
     $subFieldsWithTotal = Arr::add($subFieldsWithUser, 'total', $subscriptionTotal);
 
-    // dd($coursesIds);
-
-    // dd($subFieldsWithTotal);
-
     $this->subscriptionRepository->updateSubscription($sub, $subFieldsWithTotal);
     $sub->courses()->sync($coursesIds);
 
-    return $this->successResponse($sub, ResponseMessages::SUBSCRIPION_CREATED, ResponseStatusCode::SUCCESS);
+    return $this->successResponse($sub, ResponseMessages::SUBSCRIPION_UPDATED, ResponseStatusCode::SUCCESS);
   }
 
   public function destroySubscription(int $id)

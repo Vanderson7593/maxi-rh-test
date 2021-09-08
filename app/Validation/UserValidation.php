@@ -24,6 +24,7 @@ final class UserValidation
     return Validator::make(request()->all(), [
       User::NAME => 'required|string|max:255|',
       User::EMAIL => "required|string|email|unique:users,email,{$user_id},id",
+      User::UF => 'required|string|max:3|',
       User::CPF => 'required|string|max:9',
       User::ADDRESS => 'required|string|max:25',
       User::COMPANY => 'required|string|max:70',

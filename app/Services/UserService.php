@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Constants\ResponseMessages;
 use App\Constants\ResponseStatusCode;
 use App\Constants\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
@@ -44,6 +45,7 @@ class UserService
    * Create a new User
    * @param array $User
    * @return object $User
+   * 
    */
   public function makeUser(array $user)
   {
@@ -62,5 +64,30 @@ class UserService
     $user[User::PASSWORD] = Hash::make($validator->validated()[User::PASSWORD]);
 
     return $this->userRepository->createUser($user);
+  }
+
+  public function updateUser($id, array $user)
+  {
+    $validator = null;
+
+    $user = $this->userService->getUserById($id);
+
+    if (!$user) {
+      return $this->errorResponse(ResponseMessages::USER_NOT_FOUND, ResponseStatusCode::NOT_FOUND);
+    }
+
+    if ($user[User::ROLE] === User::ROLES[2]) {
+      $validator = UserValidation::validateStudent();
+    } else {
+      $validator = UserValidation::validateUser();
+    }
+
+    if ($validator->fails()) {
+      return $this->errorResponse($validator->errors(), ResponseStatusCode::UNPROCESSABLE_ENTITY);
+    }
+
+    $user[User::PASSWORD] = Hash::make($validator->validated()[User::PASSWORD]);
+
+    return $this->userRepository->updateUser($id, $user);
   }
 }
