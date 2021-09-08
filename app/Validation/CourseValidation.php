@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Validation;
+
+use App\Constants\Course;
+use Illuminate\Support\Facades\Validator;
+
+final class CourseValidation
+{
+  static function validateCourse()
+  {
+    return Validator::make(request()->all(), [
+      Course::NAME => 'required|string|max:255|',
+      Course::DESCRIPTION => 'required|string|max:255|',
+      Course::VALUE => 'required|numeric',
+      Course::SUB_START_DATE => 'required|date',
+      Course::SUB_END_DATE => 'required|date',
+      Course::MAX_SUB => 'required|numeric',
+      Course::FILES => 'nullable'
+    ]);
+  }
+}

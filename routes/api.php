@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('users', UserController::class);
-Route::resource('courses', CourseController::class);
+Route::resource('users', UserController::class, ['except' => ['']]);
+Route::resource('courses', CourseController::class, ['only' => ['']]);
 Route::resource('subscriptions', SubscriptionController::class);
 
 Route::get('sub', function () {

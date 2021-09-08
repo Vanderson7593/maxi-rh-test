@@ -20,16 +20,16 @@ class UserController extends Controller
 
   public function index()
   {
-    return HTTPHelpers::TryCatch($this->userService->getAllUsers());
+    return $this->userService->getAllUsers();
   }
 
   public function show($user)
   {
-    return HTTPHelpers::TryCatch($this->userService->getUserById($user));
+    return $this->userService->getUserById($user);
   }
 
   public function store(Request $request)
   {
-    return HTTPHelpers::TryCatch($this->userService->makeUser($request->json()->all()));
+    return $this->userService->makeUser($request->json()->all());
   }
 }

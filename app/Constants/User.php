@@ -20,4 +20,6 @@ final class User
     public const COURSE_ID = 'course_id';
 
     public const ROLES = ['admin', 'operator', 'student'];
+
+    public const CATEGORIES = ['student', 'professional', 'associate'];
 }
