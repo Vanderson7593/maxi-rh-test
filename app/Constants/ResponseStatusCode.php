@@ -2,7 +2,7 @@
 
 namespace App\Constants;
 
-final class StatusCodes
+final class ResponseStatusCode
 {
   public const NOT_FOUND = 404;
   public const SUCCESS = 200;
