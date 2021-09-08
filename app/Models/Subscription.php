@@ -19,8 +19,8 @@ class Subscription extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function course()
+    public function courses()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsToMany(Course::class);
     }
 }
