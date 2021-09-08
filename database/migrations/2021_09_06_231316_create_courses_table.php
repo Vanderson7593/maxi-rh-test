@@ -23,7 +23,7 @@ class CreateCoursesTable extends Migration
             $table->integer(Course::MAX_SUB);
             $table->date(Course::SUB_START_DATE);
             $table->date(Course::SUB_END_DATE);
-            $table->json(Course::FILES)->nullable();
+            $table->string(Course::FILE)->nullable();
             $table->boolean(Model::IS_DELETED)->default(false);
             $table->timestamps();
         });

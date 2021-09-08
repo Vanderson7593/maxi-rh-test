@@ -38,6 +38,14 @@ class CourseService
     return $this->courseRepository->getCourseById($id);
   }
 
+
+  public function uploudFile($file)
+  {
+    $url = '';
+
+    return $url;
+  }
+
   /**
    * Create a new Course
    * @param array $course

@@ -20,10 +20,6 @@ class Course extends Model
         ConstantsModel::IS_DELETED => false,
     ];
 
-    protected $casts = [
-        ConstantsCourse::FILES => 'array'
-    ];
-
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class);
