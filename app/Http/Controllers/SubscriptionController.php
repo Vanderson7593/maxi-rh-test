@@ -3,39 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\HTTPHelpers;
-use App\Models\Subscription;
-use App\Models\Subscripton;
-use App\Services\SubscriptonService;
+use App\Services\SubscriptionService;
 use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
 
-  protected $SubscriptonService;
+  protected $subscriptionService;
 
-  // public function __construct(SubscriptonService $SubscriptonService)
-  // {
-  //   $this->SubscriptonService = $SubscriptonService;
-  // }
+  public function __construct(SubscriptionService $SubscriptionService)
+  {
+    $this->subscriptionService = $SubscriptionService;
+  }
 
   public function index()
   {
-    return HTTPHelpers::TryCatch(Subscription::all());
+    return $this->subscriptionService->getAllSubscriptions();
+  }
+
+  public function update(Request $request, $id)
+  {
+    return $this->subscriptionService->updateSubscription($id, $request->json()->all());
   }
 
   public function store(Request $request)
   {
-    return HTTPHelpers::TryCatch(Subscription::create($request->json()->all()));
+    return $this->subscriptionService->makeSubscription($request->json()->all());
   }
-
-  // public function show($Subscripton)
-  // {
-  //   return HTTPHelpers::TryCatch($this->SubscriptonService->getSubscriptonById($Subscripton));
-  // }
-
-  // public function store(Request $request)
-  // {
-  //   return HTTPHelpers::TryCatch($this->SubscriptonService->makeSubscripton($request->json()->all()));
-  // }
 }

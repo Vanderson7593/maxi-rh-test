@@ -21,16 +21,11 @@ class CourseController extends Controller
 
   public function index()
   {
-    return HTTPHelpers::TryCatch($this->courseService->getAllCourses());
-  }
-
-  public function show($Course)
-  {
-    return HTTPHelpers::TryCatch($this->courseService->getCourseById($Course));
+    return $this->courseService->getAllCourses();
   }
 
   public function store(Request $request)
   {
-    return HTTPHelpers::TryCatch($this->courseService->makeCourse($request->json()->all()));
+    return $this->courseService->makeCourse($request->json()->all());
   }
 }
