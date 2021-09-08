@@ -30,4 +30,9 @@ class SubscriptionController extends Controller
   {
     return $this->subscriptionService->makeSubscription($request->json()->all());
   }
+
+  public function destroy($id)
+  {
+    return $this->subscriptionService->destroySubscription($id);
+  }
 }
