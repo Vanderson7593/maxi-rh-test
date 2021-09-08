@@ -7,6 +7,7 @@ use App\Constants\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Traits\ApiResponser;
 use App\Validation\UserValidation;
+use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
@@ -57,6 +58,8 @@ class UserService
     if ($validator->fails()) {
       return $this->errorResponse($validator->errors(), ResponseStatusCode::UNPROCESSABLE_ENTITY);
     }
+
+    $user[User::PASSWORD] = Hash::make($validator->validated()[User::PASSWORD]);
 
     return $this->userRepository->createUser($user);
   }
