@@ -1,5 +1,7 @@
 <?php
 
+use App\Constants\Course;
+
 return [
 
     /*
@@ -152,6 +154,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        Course::MAX_SUB => 'Max subscriptions',
+        Course::SUB_START_DATE => 'Subscription start date',
+        Course::SUB_END_DATE => 'Subscription end date'
+    ],
 
 ];
