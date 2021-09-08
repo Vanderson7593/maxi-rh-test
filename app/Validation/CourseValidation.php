@@ -5,8 +5,9 @@ namespace App\Validation;
 use App\Constants\Course;
 use Illuminate\Support\Facades\Validator;
 
-final class CourseValidation
+class CourseValidation
 {
+
   static function validateCourse()
   {
     return Validator::make(request()->all(), [
