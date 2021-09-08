@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\{UserController, CourseController, SubscriptionController};
-use App\Models\Subscription;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,13 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('users', UserController::class, ['except' => ['']]);
-Route::resource('courses', CourseController::class, ['only' => ['']]);
-Route::resource('subscriptions', SubscriptionController::class);
+Route::resource('users', UserController::class); // ['only' => ['store']]
+Route::resource('courses', CourseController::class); //['only' => ['store', 'index']]
+Route::resource('subscriptions', SubscriptionController::class); // ['index', 'update', 'show']
 
 Route::get('sub', function () {
-  $sub = new Subscription();
-  $sub->user_id = 1;
-  $sub->course_id = 1;
-  return $sub->save();
+  $a = 'APP';
+  return "{$a}";
 });
