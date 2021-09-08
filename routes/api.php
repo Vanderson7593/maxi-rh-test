@@ -14,11 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('users', UserController::class); // ['only' => ['store']]
-Route::resource('courses', CourseController::class); //['only' => ['store', 'index']]
-Route::resource('subscriptions', SubscriptionController::class); // ['index', 'update', 'show']
-
-Route::get('sub', function () {
-  $a = 'APP';
-  return "{$a}";
-});
+Route::resource('users', UserController::class, ['only' => ['store']]);
+Route::resource('courses', CourseController::class, ['only' => ['store', 'index']]);
+Route::resource('subscriptions', SubscriptionController::class, ['except' => ['edit', 'create']]);
