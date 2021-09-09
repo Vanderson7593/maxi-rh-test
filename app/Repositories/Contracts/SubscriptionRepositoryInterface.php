@@ -4,7 +4,7 @@ namespace App\Repositories\Contracts;
 
 interface SubscriptionRepositoryInterface
 {
-  public function getAllSubscriptions();
+  public function getAllSubscriptions($queries);
   public function getSubscriptionById(int $id);
   public function createSubscription(array $Subscription);
   public function updateSubscription(object $SubscriptionModel, array $Subscription);

@@ -19,9 +19,9 @@ class SubscriptionRepository implements SubscriptionRepositoryInterface
    * Get all Subscriptions
    * @return array
    */
-  public function getAllSubscriptions()
+  public function getAllSubscriptions($queries)
   {
-    return $this->entity->all();
+    return $this->entity->all()->load(['user', 'courses']);
   }
 
   /**
@@ -31,7 +31,7 @@ class SubscriptionRepository implements SubscriptionRepositoryInterface
    */
   public function getSubscriptionById(int $id)
   {
-    return $this->entity->where('id', $id)->first();
+    return $this->entity->where('id', $id)->first()->load(['user', 'courses']);
   }
 
   /**

@@ -30,14 +30,20 @@ class SubscriptionService
     $this->courseRepository = $courseRepository;
   }
 
-  public function getAllSubscriptions()
+  public function getAllSubscriptions($queries)
   {
-    return $this->subscriptionRepository->getAllSubscriptions();
+    return $this->subscriptionRepository->getAllSubscriptions($queries);
   }
 
   public function getSubscriptionById(int $id)
   {
-    return $this->subscriptionRepository->getSubscriptionById($id);
+    $sub = $this->subscriptionRepository->getSubscriptionById($id);
+
+    if (!$sub) {
+      return $this->errorResponse(ResponseMessages::NOT_FOUND, ResponseStatusCode::NOT_FOUND);
+    }
+
+    return $this->subscriptionRepository->getSubscriptionById($sub->id);
   }
 
   public function calculateTotal(array $coursesIds)

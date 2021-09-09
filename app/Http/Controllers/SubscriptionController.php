@@ -16,9 +16,9 @@ class SubscriptionController extends Controller
     $this->subscriptionService = $SubscriptionService;
   }
 
-  public function index()
+  public function index(Request $request)
   {
-    return $this->subscriptionService->getAllSubscriptions();
+    return $this->subscriptionService->getAllSubscriptions($request->all());
   }
 
   public function update(Request $request, $id)
@@ -29,6 +29,11 @@ class SubscriptionController extends Controller
   public function store(Request $request)
   {
     return $this->subscriptionService->makeSubscription($request->json()->all());
+  }
+
+  public function show($id)
+  {
+    return $this->subscriptionService->getSubscriptionById($id);
   }
 
   public function destroy($id)
