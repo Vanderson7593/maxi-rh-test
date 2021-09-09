@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateSubscriptionTable extends Migration
+class UpdateStatusSubscriptionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,6 @@ class UpdateSubscriptionTable extends Migration
     {
         Schema::table(Subscription::TABLE_NAME, function (Blueprint $table) {
             $table->string(Subscription::STATUS)->default(Subscription::STATUS_MAP[1])->change();
-            $table->boolean(Model::IS_DELETED)->default(false)->change();
         });
     }
 

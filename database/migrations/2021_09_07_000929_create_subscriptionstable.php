@@ -1,10 +1,7 @@
 <?php
 
-use App\Constants\Course;
-use App\Constants\CourseUserConstant;
 use App\Constants\Model;
 use App\Constants\Subscription;
-use App\Constants\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
