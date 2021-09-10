@@ -5,5 +5,5 @@ export enum ECourse {
     SUB_START_DATE = "sub_start_date",
     SUB_END_DATE = "sub_end_date",
     MAX_SUB = "max_sub",
-    FILE = "files",
+    FILE = "file",
 }

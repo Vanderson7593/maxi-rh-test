@@ -1,20 +1,17 @@
-import React, { ChangeEvent, FC, FormEventHandler, useRef, useState } from "react";
-import { Box, Button, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Typography } from "@material-ui/core";
+import React, { ChangeEvent, FC, useRef, useState } from "react";
+import { Box, Button, TextField, Typography } from "@material-ui/core";
 import useAsyncState from "../../../hooks/use-async-state";
-import { useForm } from 'react-hook-form';
+import { useForm, useController } from 'react-hook-form';
 import { createCourse } from "../../../services/courses";
 
 import { useSnackbar } from 'react-simple-snackbar'
-import { useParams } from "react-router";
 import { ICourse } from "../../../types/course";
 import { readSingleFileAsDataURL } from "../../../utils/file";
 
 const CoursesCreate: FC = () => {
   const { errors, setErrors } = useAsyncState()
-  const { handleSubmit, register, control, reset } = useForm<ICourse>();
+  const { handleSubmit, register } = useForm<ICourse>();
   const [openSnackbar, _] = useSnackbar()
-  const [file, setFile] = useState<File>();
-  const formRef = useRef()
 
   const handleFormSubmit = handleSubmit<ICourse>(async courseFormData => {
 
@@ -30,16 +27,11 @@ const CoursesCreate: FC = () => {
     }
   })
 
-  const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    const file = await readSingleFileAsDataURL(e);
-    setFile(file);
-  }
-
   return (
     <Box width={400}>
       <Typography variant="h4">Create course</Typography>
 
-      <form ref={formRef} onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} encType="multipart/form-data">
         <Box display="flex" flexDirection="column" style={{ gap: 20 }}>
           <TextField
             {...register("name")}
@@ -105,11 +97,6 @@ const CoursesCreate: FC = () => {
             name="max_sub"
             variant="filled"
             helperText={errors?.max_sub}
-          />
-
-          <input
-            type="file"
-            onChange={onChange}
           />
 
           <Button variant="contained" color="primary" type="submit">Submit form</Button>

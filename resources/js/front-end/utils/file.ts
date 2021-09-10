@@ -6,7 +6,6 @@ export const readSingleFileAsDataURL = async (
   new Promise(resolve => {
     const reader: FileReader = new FileReader();
     const file = e!.target.files![0];
-
     reader.onloadend = () => {
       if (reader.result) {
         resolve(file);

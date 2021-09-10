@@ -1,10 +1,12 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 
 const Home: React.FC = () => (
-    <Typography variant="h1">
-        Welcome to Vanderson Telema's aptitude test!
-    </Typography>
+    <Box textAlign="center">
+        <Typography variant="h1">
+            Welcome to <br /> Vanderson Telema's <br /> aptitude test!
+        </Typography>
+    </Box>
 );
 
 export default Home;

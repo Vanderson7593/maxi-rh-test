@@ -1,7 +1,7 @@
-import React, { FC, FormEventHandler, useState } from "react";
+import React, { FC, useState } from "react";
 import { Box, Button, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Typography } from "@material-ui/core";
 import useAsyncState from "../../../hooks/use-async-state";
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { IUser } from "../../../types/user";
 import { ERoles } from "../../../constants";
 import { createUser } from "../../../services/users";
@@ -14,9 +14,9 @@ interface ICreateUser extends IUser {
 
 const UsersCreate: FC = () => {
   const { errors, setErrors } = useAsyncState()
-  const { handleSubmit, register, control, reset } = useForm<ICreateUser>();
+  const { handleSubmit, register } = useForm<ICreateUser>();
   const [role, setRole] = useState<ERoles>(ERoles.OPERATOR);
-  const [openSnackbar, closeSnackbar] = useSnackbar()
+  const [openSnackbar, _] = useSnackbar()
 
   const handleChange = (event: React.ChangeEvent<{ value: ERoles }>) => {
     setRole(event.target.value as ERoles);

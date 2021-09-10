@@ -89,14 +89,14 @@ const SubscriptionCreate: FC = () => {
 
   return (
     <Box width={500}>
-      <Typography variant="h4">{subId ? 'Update' : 'Create'} user form</Typography>
+      <Typography variant="h4">Create subscription form</Typography>
 
       <form onSubmit={handleFormSubmit}>
         <Box display="flex" flexDirection="column" style={{ gap: 20 }}>
           <TextField
             {...register("name")}
             error={!!errors?.name}
-            label="Name do aluno"
+            label="Name"
             name="name"
             type="text"
             variant="filled"

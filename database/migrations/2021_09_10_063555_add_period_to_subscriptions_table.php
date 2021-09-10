@@ -26,7 +26,7 @@ class AddPeriodToSubscriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('user', function (Blueprint $table) {
+        Schema::table(Subscription::TABLE_NAME, function (Blueprint $table) {
             //
         });
     }

@@ -71,12 +71,16 @@ class CourseService
       return $this->errorResponse($validator->errors(), ResponseStatusCode::UNPROCESSABLE_ENTITY);
     }
 
-    $url = $this->uploudFile($file);
+    $data = $validator->validated();
 
-    $tempCourse = ['file' => $url];
+    if ($file) {
+      $url = $this->uploudFile($file);
+      $tempCourse = ['file' => $url];
+      $data = array_merge($validator->validated(), $tempCourse);
+    }
 
-    $data = $this->courseRepository->createCourse(array_merge($validator->validated(), $tempCourse));
+    $finalData = $this->courseRepository->createCourse($data);
 
-    return $this->successResponse($data, ResponseMessages::COURSE_CREATED, ResponseStatusCode::SUCCESS);
+    return $this->successResponse($finalData, ResponseMessages::COURSE_CREATED, ResponseStatusCode::SUCCESS);
   }
 }

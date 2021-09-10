@@ -18,6 +18,7 @@ Route::resource('users', UserController::class, ['only' => ['store', 'index']]);
 
 Route::resource('courses', CourseController::class, ['only' => ['store', 'index']]);
 
-Route::resource('subscriptions', SubscriptionController::class, ['except' => ['edit', 'create']]);
-
-Route::patch('/subscriptions/status/update/{id}', [SubscriptionController::class, 'updateStatus']);
+Route::prefix('subscriptions')->group(function () {
+  Route::resource('/', SubscriptionController::class, ['except' => ['edit', 'create']]);
+  Route::patch('status/update/{id}', [SubscriptionController::class, 'updateStatus']);
+});

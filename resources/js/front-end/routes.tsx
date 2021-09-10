@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import CoursesCreate from "./pages/courses/views/courses-create";
-import CreateCourse from "./pages/courses/views/create-course";
 import Home from "./pages/home";
 import Subscriptions from "./pages/subscriptions/views";
 import SubscriptionUpdate from "./pages/subscriptions/views/subcription-update";

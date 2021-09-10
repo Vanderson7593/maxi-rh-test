@@ -1,14 +1,15 @@
+import { Box } from "@material-ui/core";
 import React, { FC } from "react";
 import { Link, BrowserRouter as Router } from "react-router-dom";
 
 const SideBar: FC = ({ children }) => {
     return (
         <Router>
-            <div style={{ display: "flex" }}>
-                <div
+            <Box display="flex" height="100vh">
+                <Box
                     style={{
                         padding: "10px",
-                        width: "20%",
+                        width: "12%",
                         background: "#f0f0f0",
                     }}
                 >
@@ -20,9 +21,6 @@ const SideBar: FC = ({ children }) => {
                             <Link to="/users/create">Create Users</Link>
                         </li>
                         <li>
-                            <Link to="/courses">List Courses</Link>
-                        </li>
-                        <li>
                             <Link to="/courses/create">Create Course</Link>
                         </li>
                         <li>
@@ -32,9 +30,9 @@ const SideBar: FC = ({ children }) => {
                             <Link to="/subscriptions/create">Create Subscription</Link>
                         </li>
                     </ul>
-                </div>
-                <div style={{ flex: 1, padding: "10px" }}>{children}</div>
-            </div>
+                </Box>
+                <Box display="flex" flex={1} justifyContent="center">{children}</Box>
+            </Box>
         </Router>
     );
 };
