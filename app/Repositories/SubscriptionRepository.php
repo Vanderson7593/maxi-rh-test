@@ -21,10 +21,11 @@ class SubscriptionRepository implements SubscriptionRepositoryInterface
    */
   public function getAllSubscriptions($queries)
   {
-    $data = $this->entity->all();
+    $data = $this->entity->filter()->get();
     if (!$data) {
       return null;
     }
+
     return $data->load(['user', 'courses']);
   }
 

@@ -138,8 +138,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'status' => [
+            'in' => 'Status must be paid, unpaid or cancelled',
         ],
     ],
 
