@@ -9,6 +9,8 @@ final class Subscription
     public const TOTAL = 'total';
     public const STATUS = 'status';
     public const COURSES = 'courses';
+    public const PERIOD = 'period';
+    public const PERIODS = ['morning', 'afternoon', 'night'];
 
     public const STATUS_MAP = ['paid', 'unpaid', 'cancelled'];
 }

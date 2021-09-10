@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('users', UserController::class, ['only' => ['store']]);
+Route::resource('users', UserController::class, ['only' => ['store', 'index']]);
 Route::resource('courses', CourseController::class, ['only' => ['store', 'index']]);
+
 Route::resource('subscriptions', SubscriptionController::class, ['except' => ['edit', 'create']]);
+
+Route::patch('/subscriptions/status/update/{id}', [SubscriptionController::class, 'updateStatus']);

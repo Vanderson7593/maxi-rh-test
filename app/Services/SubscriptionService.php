@@ -32,7 +32,8 @@ class SubscriptionService
 
   public function getAllSubscriptions($queries)
   {
-    return $this->subscriptionRepository->getAllSubscriptions($queries);
+    $data = $this->subscriptionRepository->getAllSubscriptions($queries);
+    return $this->successResponse($data, null, ResponseStatusCode::SUCCESS);
   }
 
   public function getSubscriptionById(int $id)
@@ -43,7 +44,26 @@ class SubscriptionService
       return $this->errorResponse(ResponseMessages::NOT_FOUND, ResponseStatusCode::NOT_FOUND);
     }
 
-    return $this->subscriptionRepository->getSubscriptionById($sub->id);
+    return $this->successResponse($sub, null, ResponseStatusCode::SUCCESS);
+  }
+
+  public function updateSubscriptionStatus(int $id, array $req)
+  {
+    $sub = $this->subscriptionRepository->getSubscriptionById($id);
+
+    if (!$sub) {
+      return $this->errorResponse(ResponseMessages::NOT_FOUND, ResponseStatusCode::NOT_FOUND);
+    }
+
+    $subscriptionValidator = SubscriptionValidation::validateStatus();
+
+    if ($subscriptionValidator->fails()) {
+      return $this->errorResponse($subscriptionValidator->errors(), ResponseStatusCode::UNPROCESSABLE_ENTITY);
+    }
+
+    $tempSub = $this->subscriptionRepository->updateSubscriptionStatus($sub, $subscriptionValidator->validated()['status']);
+
+    return $this->successResponse($tempSub, ResponseMessages::SUBSCRIPION_STATUS_UPDATED, ResponseStatusCode::SUCCESS);
   }
 
   public function calculateTotal(array $coursesIds)
@@ -92,17 +112,14 @@ class SubscriptionService
   public function updateSubscription(int $id, array $subscription)
   {
     $sub = $this->subscriptionRepository->getSubscriptionById($id);
-    $user = $this->userRepository->getUserById($subscription['user_id']);
 
     if (!$sub) {
       return $this->errorResponse(ResponseMessages::SUBSCRIPTION_NOT_FOUND, ResponseStatusCode::NOT_FOUND);
     }
 
-    if (!$user) {
-      return $this->errorResponse(ResponseMessages::USER_NOT_FOUND, ResponseStatusCode::NOT_FOUND);
-    }
+    $user = $sub->user;
 
-    $userValidator = UserValidation::validateStudent($user->id);
+    $userValidator = UserValidation::validateStudentOnUpdate($user['id']);
     $subscriptionValidator = SubscriptionValidation::validateSubscription();
 
     if ($userValidator->fails()) {

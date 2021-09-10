@@ -21,7 +21,11 @@ class SubscriptionRepository implements SubscriptionRepositoryInterface
    */
   public function getAllSubscriptions($queries)
   {
-    return $this->entity->all()->load(['user', 'courses']);
+    $data = $this->entity->all();
+    if (!$data) {
+      return null;
+    }
+    return $data->load(['user', 'courses']);
   }
 
   /**
@@ -31,7 +35,11 @@ class SubscriptionRepository implements SubscriptionRepositoryInterface
    */
   public function getSubscriptionById(int $id)
   {
-    return $this->entity->where('id', $id)->first()->load(['user', 'courses']);
+    $data = $this->entity->where('id', $id)->first();
+    if (!$data) {
+      return null;
+    }
+    return $data->load(['user', 'courses']);
   }
 
   /**
@@ -53,6 +61,17 @@ class SubscriptionRepository implements SubscriptionRepositoryInterface
   public function updateSubscription(object $SubscriptionModel, array $Subscription)
   {
     return $SubscriptionModel->update($Subscription);
+  }
+
+  /**
+   * Update Subscription Status
+   * @param object $SubscriptionModel
+   * @param array $Subscription
+   * @return object
+   */
+  public function updateSubscriptionStatus(object $SubscriptionModel, string $status)
+  {
+    return $SubscriptionModel->update(['status' => $status]);
   }
 
   /**

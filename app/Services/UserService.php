@@ -38,7 +38,13 @@ class UserService
    */
   public function getUserById(int $id)
   {
-    return $this->userRepository->getUserById($id);
+    $user = $this->userService->getUserById($id);
+
+    if (!$user) {
+      return $this->errorResponse(ResponseMessages::USER_NOT_FOUND, ResponseStatusCode::NOT_FOUND);
+    }
+
+    return $this->successResponse($user, null, ResponseStatusCode::SUCCESS);
   }
 
   /**
@@ -63,7 +69,8 @@ class UserService
 
     $user[User::PASSWORD] = Hash::make($validator->validated()[User::PASSWORD]);
 
-    return $this->userRepository->createUser($user);
+    $data = $this->userRepository->createUser($user);
+    return $this->successResponse($data, ResponseMessages::USER_CREATED, ResponseStatusCode::SUCCESS);
   }
 
   public function updateUser($id, array $user)
@@ -88,6 +95,7 @@ class UserService
 
     $user[User::PASSWORD] = Hash::make($validator->validated()[User::PASSWORD]);
 
-    return $this->userRepository->updateUser($id, $user);
+    $data = $this->userRepository->updateUser($id, $user);
+    return $this->successResponse($data, ResponseMessages::USER_UPDATED, ResponseStatusCode::SUCCESS);
   }
 }

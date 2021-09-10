@@ -26,6 +26,11 @@ class SubscriptionController extends Controller
     return $this->subscriptionService->updateSubscription($id, $request->json()->all());
   }
 
+  public function updateStatus(Request $request, $id)
+  {
+    return $this->subscriptionService->updateSubscriptionStatus($id, $request->json()->all());
+  }
+
   public function store(Request $request)
   {
     return $this->subscriptionService->makeSubscription($request->json()->all());

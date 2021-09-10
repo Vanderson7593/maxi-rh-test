@@ -20,5 +20,6 @@ final class User
 
     public const ROLES = ['admin', 'operator', 'student'];
 
+
     public const CATEGORIES = ['student', 'professional', 'associate'];
 }

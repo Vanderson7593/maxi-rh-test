@@ -13,5 +13,10 @@ final class ResponseMessages
   public const SUBSCRIPTION_NOT_FOUND = 'Subscription not found';
 
   public const SUBSCRIPION_CREATED = 'Subscription created';
+  public const COURSE_CREATED = 'Course created';
+
+  public const USER_CREATED = 'User created';
+  public const SUBSCRIPION_STATUS_UPDATED = 'Subscription status updated';
   public const SUBSCRIPION_UPDATED = 'Subscription updated';
+  public const USER_UPDATED = 'User updated';
 }

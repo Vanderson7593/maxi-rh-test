@@ -14,7 +14,14 @@ final class SubscriptionValidation
     return Validator::make(request()->all(), [
       Subscription::STATUS => ['required', Rule::in(Subscription::STATUS_MAP)],
       Subscription::COURSES => 'required|array|min:1',
-      Subscription::USER_ID => '',
+      Subscription::PERIOD => ['required', Rule::in(Subscription::PERIODS)],
+    ]);
+  }
+
+  static function validateStatus()
+  {
+    return Validator::make(request()->all(), [
+      Subscription::STATUS => ['required', Rule::in(Subscription::STATUS_MAP)],
     ]);
   }
 }

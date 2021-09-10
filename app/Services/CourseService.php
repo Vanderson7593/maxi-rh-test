@@ -25,7 +25,8 @@ class CourseService
    */
   public function getAllCourses()
   {
-    return $this->courseRepository->getAllCourses();
+    $courses = $this->courseRepository->getAllCourses();
+    return $this->successResponse($courses, null, ResponseStatusCode::SUCCESS);
   }
 
   /**
@@ -35,7 +36,13 @@ class CourseService
    */
   public function getCourseById(int $id)
   {
-    return $this->courseRepository->getCourseById($id);
+    $course = $this->courseRepository->getCourseById($id);
+
+    if (!$course) {
+      return $this->errorResponse(ResponseMessages::COURSE_NOT_FOUND, ResponseStatusCode::NOT_FOUND);
+    }
+
+    return $this->successResponse($course, null, ResponseStatusCode::SUCCESS);
   }
 
 
@@ -59,6 +66,8 @@ class CourseService
       return $this->errorResponse($validator->errors(), ResponseStatusCode::UNPROCESSABLE_ENTITY);
     }
 
-    return $this->courseRepository->createCourse($course);
+    $data = $this->courseRepository->createCourse($course);
+
+    return $this->successResponse($data, ResponseMessages::COURSE_CREATED, ResponseStatusCode::SUCCESS);
   }
 }
