@@ -26,6 +26,9 @@ class CourseController extends Controller
 
   public function store(Request $request)
   {
-    return $this->courseService->makeCourse($request->json()->all());
+
+    // dd($request->file('file')->store('pdfs'));
+
+    return $this->courseService->makeCourse($request->json()->all(), $request->file('file'));
   }
 }

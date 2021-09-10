@@ -1,4 +1,4 @@
-import { ECourse, EFILE } from "../constants";
+import { ECourse } from "../constants";
 import { IModel } from "./model";
 
 export interface ICourse extends IModel {
@@ -8,5 +8,5 @@ export interface ICourse extends IModel {
     [ECourse.SUB_START_DATE]: Date;
     [ECourse.SUB_END_DATE]: Date;
     [ECourse.MAX_SUB]: number;
-    [ECourse.FILE]: EFILE.URL;
+    [ECourse.FILE]: any;
 }

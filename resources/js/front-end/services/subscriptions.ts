@@ -1,8 +1,10 @@
 import { ModelData, ListData } from "../types/services";
 import { ISubscription } from "../types/subcription";
+import { formatQuery } from "./services-helpers";
+import { AllowedQueryKeys } from "./services.types";
 import { deleteRequest, getRequest, patchRequest, postRequest } from "./utils";
 
-export const getAllSubscriptions = () => getRequest<ReadonlyArray<ISubscription>>(`/subscriptions`);
+export const getAllSubscriptions = (query: AllowedQueryKeys) => getRequest<ReadonlyArray<ISubscription>>(`/subscriptions?${formatQuery(query)}`);
 
 export const getSubscription = (id: number) =>
     getRequest<ISubscription>(`/subscriptions/${id}`);

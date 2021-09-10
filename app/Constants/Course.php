@@ -12,5 +12,5 @@ final class Course
     public const SUB_START_DATE = 'sub_start_date';
     public const SUB_END_DATE = 'sub_end_date';
     public const MAX_SUB = 'max_sub';
-    public const FILE = 'files';
+    public const FILE = 'file';
 }

@@ -48,11 +48,12 @@ const SubscriptionsTable: FC = () => {
   const handleRefresher = () =>
     setTimeout(() => {
       setRefresher(uuid());
-    }, 1000);
+    }, 400);
 
   useEffect(() => {
     async function get() {
-      const res = await getAllSubscriptions();
+      const res = await getAllSubscriptions({});
+      console.log(res.data)
       setSubscriptions(res.data);
     }
     get();
@@ -80,10 +81,14 @@ const SubscriptionsTable: FC = () => {
     setFilter(event.target.value);
   };
 
-  const handleChangeSearch = (event: React.ChangeEvent<{ value: string }>) => {
-
-
-
+  const handleChangeSearch = async (event: React.ChangeEvent<{ value: string }>) => {
+    const value = event.target.value
+    let searchObj = { [filter]: value }
+    if (value.length === 0) {
+      searchObj = {}
+    }
+    const res = await getAllSubscriptions(searchObj)
+    setSubscriptions(res.data)
   };
 
 
@@ -109,12 +114,13 @@ const SubscriptionsTable: FC = () => {
         >
           {
             filterMap.map((filter) => (
-              <MenuItem value={filter}>{capitalizeFirstLetter(filter)}</MenuItem>
+              <MenuItem key={uuid()} value={filter}>{capitalizeFirstLetter(filter)}</MenuItem>
             ))
           }
         </Select>
       </Box>
       <MaterialTable
+        title="Subscriptions(click on status to change it) and real time search"
         options={{
           search: false
         }}
@@ -146,7 +152,6 @@ const SubscriptionsTable: FC = () => {
           }
         }}
         data={dataModifier(subscriptions)}
-        title="Subscriptions(click on status to change it)"
       />
     </>
   );

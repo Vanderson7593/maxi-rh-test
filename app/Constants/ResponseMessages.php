@@ -19,4 +19,6 @@ final class ResponseMessages
   public const SUBSCRIPION_STATUS_UPDATED = 'Subscription status updated';
   public const SUBSCRIPION_UPDATED = 'Subscription updated';
   public const USER_UPDATED = 'User updated';
+
+  public const FILE_UPLOUD_ERROR = 'Could not uploud file';
 }

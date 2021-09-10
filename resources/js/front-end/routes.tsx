@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import CoursesCreate from "./pages/courses/views/courses-create";
-import Courses from "./pages/courses/views/index";
+import CreateCourse from "./pages/courses/views/create-course";
 import Home from "./pages/home";
 import Subscriptions from "./pages/subscriptions/views";
 import SubscriptionUpdate from "./pages/subscriptions/views/subcription-update";
@@ -17,11 +17,6 @@ const homeRoute: TRoute = {
 const usersCreateRoute: TRoute = {
     url: "/users/create",
     component: UsersCreate,
-};
-
-const coursesRoute: TRoute = {
-    url: "/courses",
-    component: Courses,
 };
 
 const subscriptionsRoute: TRoute = {
@@ -40,7 +35,7 @@ const subscriptionsUpdateRoute: TRoute = {
 };
 
 const CoursesCreateRoute: TRoute = {
-    url: "/courses/:courseId?",
+    url: "/courses/create",
     component: CoursesCreate,
 };
 const routes = [
@@ -68,11 +63,6 @@ const routes = [
         exact: true,
         path: usersCreateRoute.url,
         main: () => <usersCreateRoute.component />,
-    },
-    {
-        exact: true,
-        path: coursesRoute.url,
-        main: () => <coursesRoute.component />,
     },
     {
         exact: true,

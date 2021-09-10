@@ -10,6 +10,7 @@ export const makeRequest =
                 method,
                 headers: {
                     "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
                 },
                 body: JSON.stringify(data),
             });
@@ -18,7 +19,7 @@ export const makeRequest =
             return responseData;
         };
 
-export const postRequest = makeRequest("POST");
+export const postRequest = makeRequest('POST');
 export const getRequest = makeRequest("GET");
 export const deleteRequest = makeRequest("DELETE");
 export const patchRequest = makeRequest("PATCH");

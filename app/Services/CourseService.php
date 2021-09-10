@@ -7,6 +7,7 @@ use App\Constants\ResponseStatusCode;
 use App\Repositories\Contracts\CourseRepositoryInterface;
 use App\Traits\ApiResponser;
 use App\Validation\CourseValidation;
+use Illuminate\Support\Facades\Storage;
 
 class CourseService
 {
@@ -48,9 +49,13 @@ class CourseService
 
   public function uploudFile($file)
   {
-    $url = '';
+    $path = Storage::disk('local')->put('/course-data', $file);
 
-    return $url;
+    if (!$path) {
+      return $this->errorResponse(ResponseMessages::FILE_UPLOUD_ERROR, ResponseStatusCode::UNPROCESSABLE_ENTITY);
+    }
+
+    return $path;
   }
 
   /**
@@ -58,7 +63,7 @@ class CourseService
    * @param array $course
    * @return object $course
    */
-  public function makeCourse(array $course)
+  public function makeCourse(array $course, $file)
   {
     $validator = CourseValidation::validateCourse();
 
@@ -66,7 +71,11 @@ class CourseService
       return $this->errorResponse($validator->errors(), ResponseStatusCode::UNPROCESSABLE_ENTITY);
     }
 
-    $data = $this->courseRepository->createCourse($course);
+    $url = $this->uploudFile($file);
+
+    $tempCourse = ['file' => $url];
+
+    $data = $this->courseRepository->createCourse(array_merge($validator->validated(), $tempCourse));
 
     return $this->successResponse($data, ResponseMessages::COURSE_CREATED, ResponseStatusCode::SUCCESS);
   }

@@ -1,4 +1,4 @@
-import { ModelData, ListData } from "../types/services";
+import { ModelData } from "../types/services";
 import { IUser } from "../types/user";
 import { getRequest, postRequest } from "./utils";
 
