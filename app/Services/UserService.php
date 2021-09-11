@@ -22,20 +22,6 @@ class UserService
     $this->userRepository = $userRepository;
   }
 
-  /**
-   * Get all Users
-   * @return array
-   */
-  public function getAllUsers()
-  {
-    return $this->userRepository->getAllUsers();
-  }
-
-  /**
-   * Get User by Id
-   * @param int $id
-   * @return object 
-   */
   public function getUserById(int $id)
   {
     $user = $this->userService->getUserById($id);
@@ -47,12 +33,6 @@ class UserService
     return $this->successResponse($user, null, ResponseStatusCode::SUCCESS);
   }
 
-  /**
-   * Create a new User
-   * @param array $User
-   * @return object $User
-   * 
-   */
   public function makeUser(array $user)
   {
     $validator = null;

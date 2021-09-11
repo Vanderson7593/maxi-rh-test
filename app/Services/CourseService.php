@@ -20,21 +20,12 @@ class CourseService
     $this->courseRepository = $courseRepository;
   }
 
-  /**
-   * Get all Courses
-   * @return array
-   */
   public function getAllCourses()
   {
     $courses = $this->courseRepository->getAllCourses();
     return $this->successResponse($courses, null, ResponseStatusCode::SUCCESS);
   }
 
-  /**
-   * Get Course by Id
-   * @param int $id
-   * @return object 
-   */
   public function getCourseById(int $id)
   {
     $course = $this->courseRepository->getCourseById($id);
@@ -58,11 +49,6 @@ class CourseService
     return $path;
   }
 
-  /**
-   * Create a new Course
-   * @param array $course
-   * @return object $course
-   */
   public function makeCourse(array $course, $file)
   {
     $validator = CourseValidation::validateCourse();
