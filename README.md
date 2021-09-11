@@ -1,10 +1,10 @@
-## This is my Maxi RH Company aptitude test.
+## :rocket: This is my Maxi RH Company aptitude test.
 
 ## Used Technologies
 
-1.React - Javascript
-2.Laravel - PHP
-3.Mysql - Relational database
+1. React - Javascript
+2. Laravel - PHP
+3. Mysql - Relational database
 
 ### Installation Instructions
 
@@ -20,23 +20,29 @@
 7. From the projects root folder run `composer dump-autoload`
 8. Compile the front end assets with [npm steps](#using-npm) or [yarn steps](#using-yarn).
 
-```
-
 #### Build the Front End Assets with Mix
+
 ##### Using Yarn:
+
 1. From the projects root folder run `yarn install`
 2. From the projects root folder run `yarn run dev` or `yarn run production`
-  * You can watch assets with `yarn run watch`
+
+-   You can watch assets with `yarn run watch`
 
 ##### Using NPM:
+
 1. From the projects root folder run `npm install`
 2. From the projects root folder run `npm run dev` or `npm run production`
-  * You can watch assets with `npm run watch`
+
+-   You can watch assets with `npm run watch`
 
 #### Optionally Build Cache
+
 1. From the projects root folder run `php artisan config:cache`
 
 ### Routes
+
+```
 +--------+----------------------------------------+--------------------------------------+---------------+------------------------------------------------------------+------------+
 | Domain | Method                                 | URI                                  | Name          | Action                                                     | Middleware |
 +--------+----------------------------------------+--------------------------------------+---------------+------------------------------------------------------------+------------+
@@ -54,12 +60,12 @@
 |        | GET|HEAD                               | sanctum/csrf-cookie                  |               | Laravel\Sanctum\Http\Controllers\CsrfCookieController@show | web        |
 |        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | {any}/{all?}                         |               | Closure                                                    | web        |
 +--------+----------------------------------------+--------------------------------------+---------------+------------------------------------------------------------+------------+
-
+```
 
 ## Issues
+
 1. Cannot uploud file becouse of react hook form, instead of browser, use postman or insomnia to uploud file.
 
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-```
