@@ -1,19 +1,17 @@
 import { Box } from "@material-ui/core";
 import React, { FC } from "react";
 import { Link, BrowserRouter as Router } from "react-router-dom";
+import { useStyles } from "./side-bar.styles";
 
 const SideBar: FC = ({ children }) => {
+
+    const classes = useStyles()
+
     return (
         <Router>
-            <Box display="flex" height="100vh">
-                <Box
-                    style={{
-                        padding: "10px",
-                        width: "12%",
-                        background: "#f0f0f0",
-                    }}
-                >
-                    <ul style={{ listStyleType: "none", padding: 0 }}>
+            <Box className={classes.wrapper}>
+                <Box className={classes.root}>
+                    <ul className={classes.ul}>
                         <li>
                             <Link to="/">Home</Link>
                         </li>
