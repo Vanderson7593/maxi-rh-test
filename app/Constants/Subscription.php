@@ -9,6 +9,7 @@ final class Subscription
     public const TOTAL = 'total';
     public const STATUS = 'status';
     public const COURSES = 'courses';
+    public const SUBSCRIBER = 'subscriber';
     public const PERIOD = 'period';
     public const PERIODS = ['morning', 'afternoon', 'night'];
 
