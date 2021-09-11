@@ -2,8 +2,8 @@
 
 ## Used Technologies
 
-1. React - Javascript
-2. Laravel - PHP
+1. React - Javascript framework
+2. Laravel - PHP framework
 3. Mysql - Relational database
 
 ### Installation Instructions
@@ -54,18 +54,4 @@
 |        | PATCH                                  | api/subscriptions/status/update/{id} |               | App\Http\Controllers\SubscriptionController@updateStatus   | api        |
 |        | GET|HEAD                               | api/subscriptions/{}                 | show          | App\Http\Controllers\SubscriptionController@show           | api        |
 |        | PUT|PATCH                              | api/subscriptions/{}                 | update        | App\Http\Controllers\SubscriptionController@update         | api        |
-|        | DELETE                                 | api/subscriptions/{}                 | destroy       | App\Http\Controllers\SubscriptionController@destroy        | api        |
-|        | GET|HEAD                               | api/users                            | users.index   | App\Http\Controllers\UserController@index                  | api        |
-|        | POST                                   | api/users                            | users.store   | App\Http\Controllers\UserController@store                  | api        |
-|        | GET|HEAD                               | sanctum/csrf-cookie                  |               | Laravel\Sanctum\Http\Controllers\CsrfCookieController@show | web        |
-|        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | {any}/{all?}                         |               | Closure                                                    | web        |
-+--------+----------------------------------------+--------------------------------------+---------------+------------------------------------------------------------+------------+
-```
-
-## Issues
-
-1. Cannot uploud file becouse of react hook form, instead of browser, use postman or insomnia to uploud file.
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+|        | DELETE                                 | api/subscriptions/{}                 | destroy       | App\Http\Controllers\SubscriptionController@
