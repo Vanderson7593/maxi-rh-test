@@ -1,6 +1,10 @@
 ## This is my Maxi RH Company aptitude test.
 
-## Getting Started
+## Used Technologies
+
+1.React - Javascript
+2.Laravel - PHP
+3.Mysql - Relational database
 
 ### Installation Instructions
 
@@ -50,6 +54,10 @@
 |        | GET|HEAD                               | sanctum/csrf-cookie                  |               | Laravel\Sanctum\Http\Controllers\CsrfCookieController@show | web        |
 |        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | {any}/{all?}                         |               | Closure                                                    | web        |
 +--------+----------------------------------------+--------------------------------------+---------------+------------------------------------------------------------+------------+
+
+
+## Issues
+1. Cannot uploud file becouse of react hook form, instead of browser, use postman or insomnia to uploud file.
 
 ## Contributing
 
