@@ -13,7 +13,7 @@
     - `mysql -u root -p`, if using Vagrant: `mysql -u homestead -psecret`
     - `create database db_maxi_rh;`
     - `\q`
-3. Configure your `.env` file
+3. Configure your `.env` file (update Mysql port)
 4. Run `composer update` from the projects root folder
 5. From the projects root folder run `sudo chmod -R 755 ../maxi-rh-test`
 6. From the projects root folder run `php artisan migrate --seed`
