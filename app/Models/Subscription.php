@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Constants\Model as ConstantsModel;
+use App\Constants\Model as ModelConstants;
+use App\Constants\Subscription as SubscriptionConstants;
 use App\Models\User as User;
 use App\Scopes\IsDeletedScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,9 +15,21 @@ class Subscription extends Model
     use HasFactory;
     use FilterQueryString;
 
-    protected $filters = ['status', 'period', 'subscriber'];
+    protected $filters = [
+        SubscriptionConstants::STATUS,
+        SubscriptionConstants::PERIOD,
+        SubscriptionConstants::SUBSCRIBER
+    ];
 
-    protected $guarded = [ConstantsModel::ID];
+    protected $fillable = [
+        SubscriptionConstants::TOTAL,
+        SubscriptionConstants::STATUS,
+        SubscriptionConstants::PERIOD,
+        SubscriptionConstants::USER_ID,
+        ModelConstants::IS_DELETED,
+    ];
+
+    protected $guarded = [ModelConstants::ID];
 
     public function subscriber($query, $value)
     {

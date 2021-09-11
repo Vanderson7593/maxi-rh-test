@@ -13,6 +13,21 @@ class User extends Model
 
     use HasFactory;
 
+    protected $fillable = [
+        UserConstants::NAME,
+        UserConstants::EMAIL,
+        UserConstants::CATEGORY,
+        UserConstants::UF,
+        UserConstants::CPF,
+        UserConstants::ADDRESS,
+        UserConstants::COMPANY,
+        UserConstants::PHONE,
+        UserConstants::TELEPHONE,
+        UserConstants::ROLE,
+        UserConstants::PASSWORD,
+        ModelConstants::IS_DELETED,
+    ];
+
     protected $guarded = [ModelConstants::ID];
 
     protected $attributes = [
