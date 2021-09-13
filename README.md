@@ -8,7 +8,7 @@
 
 ### Installation Instructions
 
-1. Run `git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
+1. Run `git clone https://github.com/Vanderson7593/maxi-rh-test.git`
 2. Create a MySQL database for the project
     - `mysql -u root -p`, if using Vagrant: `mysql -u homestead -psecret`
     - `create database db_maxi_rh;`
